@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center|top"
+    android:orientation="vertical"
+    android:background="@color/lightCream"
+    tools:context="com.llamadroid.clem.myneighbourhood.HomeActivity">
+
+    <include layout="@layout/app_bar"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/subtitle_home"
+        android:textColor="@color/brown"
+        android:textSize="25sp"/>
+
+    <Button
+        android:id="@+id/button_latest_posts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:padding="5dp"
+        android:text="@string/button_latest_posts"
+        android:textSize="20sp"
+        android:textColor="@color/brown"
+        android:background="@color/burlywood"/>
+
+    <Button
+        android:id="@+id/button_new_post"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="@string/button_new_post"
+        android:textSize="20sp"
+        android:textColor="@color/brown"
+        android:background="@color/burlywood"/>
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="40dp"
+        android:gravity="center"
+        android:stretchColumns="3">
+
+        <TableRow>
+            <Button
+                android:id="@+id/button_buy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@string/button_buy"
+                android:textColor="@color/brown"
+                android:background="@color/burlywood"/>
+
+            <Button
+                android:id="@+id/button_sell"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@string/button_sell"
+                android:textColor="@color/brown"
+                android:background="@color/burlywood"/>
+        </TableRow>
+
+        <TableRow>
+
+            <Button
+                android:id="@+id/button_borrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@string/button_borrow"
+                android:textColor="@color/brown"
+                android:background="@color/burlywood"/>
+
+            <Button
+                android:id="@+id/button_give"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@string/button_give"
+                android:textColor="@color/brown"
+                android:background="@color/burlywood"/>
+        </TableRow>
+
+        <TableRow>
+
+            <Button
+                android:id="@+id/button_offer_service"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:padding="10dp"
+                android:text="@string/button_offer_service"
+                android:textColor="@color/brown"
+                android:background="@color/burlywood"/>
+
+            <Button
+                android:id="@+id/button_request_service"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:padding="5dp"
+                android:text="@string/button_request_service"
+                android:textColor="@color/brown"
+                android:background="@color/burlywood"/>
+        </TableRow>
+
+
+    </TableLayout>
+
+</LinearLayout>
+

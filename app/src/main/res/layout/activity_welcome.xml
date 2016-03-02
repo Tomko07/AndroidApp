@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context="com.llamadroid.clem.myneighbourhood.WelcomeActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        android:maxWidth="140dp"
+        android:maxHeight="140dp"
+        android:contentDescription="@string/logo"
+        android:paddingBottom="20dp"/>
+
+
+    <Button android:id="@+id/button_welcome_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_login"/>
+
+
+    <Button android:id="@+id/button_welcome_new_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/button_new_account"/>
+
+</LinearLayout>

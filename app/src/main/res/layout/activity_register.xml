@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.llamadroid.clem.myneighbourhood.RegisterActivity">
+
+    <Button android:id="@+id/button_registration_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_cancel"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:maxWidth="140dp"
+            android:maxHeight="140dp"
+            android:contentDescription="@string/logo"
+            android:paddingBottom="20dp"/>
+
+        <EditText android:id="@+id/field_register_email"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/hint_email"
+            android:inputType="textEmailAddress"/>
+
+        <EditText android:id="@+id/field_register_password"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/hint_password"
+            android:inputType="textPassword"/>
+
+        <EditText android:id="@+id/field_confirm_password"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/hint_confirm_password"
+            android:inputType="textPassword"/>
+
+        <EditText android:id="@+id/field_register_fname"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/hint_fname"/>
+
+        <EditText android:id="@+id/field_register_lname"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/hint_lname"/>
+
+        <EditText android:id="@+id/field_register_postcode"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/hint_postcode"/>
+
+        <Button android:id="@+id/button_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_register"/>
+
+    </LinearLayout>
+
+</LinearLayout>
