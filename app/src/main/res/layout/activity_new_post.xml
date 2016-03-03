@@ -1,35 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:background="@color/lightCream"
     tools:context="com.llamadroid.clem.myneighbourhood.controllers.NewPostActivity">
 
-    <android.support.design.widget.AppBarLayout
+    <include layout="@layout/app_bar"/>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="match_parent"
+        android:layout_margin="30dp"
+        android:gravity="center|top"
+        android:orientation="vertical">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        <Spinner
+            android:id="@+id/spinner_post_category"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay"/>
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textSize="20sp"
+            android:textColor="@color/brown"/>
 
-    </android.support.design.widget.AppBarLayout>
+        <EditText
+            android:id="@+id/field_new_post_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:inputType="textCapWords"
+            android:hint="@string/hint_post_title"
+            style="@style/FieldStyle"/>
 
-    <include layout="@layout/content_new_post"/>
+            <EditText
+                android:id="@+id/field_new_post_content"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:inputType="textCapSentences|textMultiLine"
+                android:scrollHorizontally="false"
+                android:gravity="start"
+                android:hint="@string/hint_post_content"
+                style="@style/FieldStyle"/>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_dialog_email"/>
+        <Button
+            android:id="@+id/button_submit_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_submit"
+            style="@style/ButtonStyle"/>
 
-</android.support.design.widget.CoordinatorLayout>
+    </LinearLayout>
+
+</LinearLayout>

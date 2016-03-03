@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.llamadroid.clem.myneighbourhood.SaveSharedPreference;
+import com.llamadroid.clem.myneighbourhood.models.CurrentUser;
 import com.llamadroid.clem.myneighbourhood.models.User;
 import com.llamadroid.clem.myneighbourhood.models.UserMap;
 import com.llamadroid.clem.myneighbourhood.R;
@@ -87,13 +89,14 @@ public class LoginActivity extends AppCompatActivity
                     if (passwordIsValid(email, password))
                     {
                         User user = UserMap.get(LoginActivity.this).getUser(email);
-                        user.setIsLoggedOn(true);
+                        CurrentUser.logUserIn(user);
 
-                        // Passing the User object to the WelcomeActivity
-                        Intent intent = new Intent();
-                        intent.putExtra(USER, user);
-                        setResult(RESULT_OK, intent);
+                        // Save user's email address to restore his/her session later
+                        SaveSharedPreference.setUserName(LoginActivity.this, user.getEmail());
 
+                        setResult(RESULT_OK);
+
+                        // Stopping this activity
                         finish();
                     }
                     else
@@ -132,7 +135,7 @@ public class LoginActivity extends AppCompatActivity
 
     private void printErrorToast(String errorMessage)
     {
-        Toast.makeText(LoginActivity.this, errorMessage,
+        Toast.makeText(this, errorMessage,
                 Toast.LENGTH_SHORT).show();
     }
 

@@ -1,30 +1,29 @@
 package com.llamadroid.clem.myneighbourhood.controllers;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.llamadroid.clem.myneighbourhood.R;
+import com.llamadroid.clem.myneighbourhood.models.CurrentUser;
 import com.llamadroid.clem.myneighbourhood.models.User;
 
+/**
+ * Class handling user interactions with the home screen.
+ */
 public class HomeActivity extends AppCompatActivity
 {
-    private Toolbar mToolbar;
+    /** Key for the intent extra. */
+    private static final String CURRENT_USER = "com.llamadroid.clem.myneighbourhood.current_user";
 
-    private Button mLatestPostsButton, mNewPostButton;
-
-    private Button mBuyButton, mSellButton, mBorrowButton, mGiveButton,
-                    mOfferServiceButton, mRequestServiceButton;
-
-    private static final String CURRENT_USER =
-            "com.llamadroid.clem.myneighbourhood.current_user";
-
-    private User mUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -32,14 +31,8 @@ public class HomeActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        if(savedInstanceState != null)
-            mUser = (User)savedInstanceState.getSerializable(CURRENT_USER);
-        else
-            mUser = WelcomeActivity.getLoggedInUser(getIntent());
-
         // Add toolbar
-        mToolbar = (Toolbar) findViewById(R.id.app_bar);
-        setSupportActionBar(mToolbar);
+        setSupportActionBar((Toolbar) findViewById(R.id.app_bar));
         if(getSupportActionBar() != null)
             getSupportActionBar().setIcon(R.drawable.logo);
 
@@ -52,27 +45,8 @@ public class HomeActivity extends AppCompatActivity
         inflateGiveButton();
         inflateOfferServiceButton();
         inflateRequestServiceButton();
-
-
-/* FOR CHILD ACTIVITIES
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDefaultDisplayHomeAsUpEnabled();
-        */
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle savedInstanceState)
-    {
-        super.onSaveInstanceState(savedInstanceState);
-        savedInstanceState.putSerializable(CURRENT_USER, mUser);
-    }
-
-    @Override
-    public void onRestoreInstanceState(Bundle savedInstanceState)
-    {
-        super.onRestoreInstanceState(savedInstanceState);
-        mUser = (User) savedInstanceState.getSerializable(CURRENT_USER);
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
@@ -113,47 +87,48 @@ public class HomeActivity extends AppCompatActivity
 
     private void inflateLatestPostsButton()
     {
-        mLatestPostsButton = (Button)findViewById(R.id.button_latest_posts);
-        mLatestPostsButton.setOnClickListener(new View.OnClickListener()
+        Button latestPostsButton = (Button)findViewById(R.id.button_latest_posts);
+        latestPostsButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                // Start latest posts activity
+                startActivity(new Intent(HomeActivity.this, ViewPostActivity.class));
             }
         });
     }
 
     private void inflateNewPostButton()
     {
-        mNewPostButton = (Button)findViewById(R.id.button_new_post);
-        mNewPostButton.setOnClickListener(new View.OnClickListener()
+        Button newPostButton = (Button)findViewById(R.id.button_new_post);
+        newPostButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                // Start new post activity
+                startActivity(new Intent(HomeActivity.this, NewPostActivity.class));
             }
         });
     }
 
     private void inflateBuyButton()
     {
-        mBuyButton = (Button)findViewById(R.id.button_buy);
-        mBuyButton.setOnClickListener(new View.OnClickListener()
+        Button buyButton = (Button)findViewById(R.id.button_buy);
+        buyButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-
+                CurrentUser.logUserOut();
+                finish();
             }
         });
     }
 
     private void inflateSellButton()
     {
-        mSellButton = (Button)findViewById(R.id.button_sell);
-        mSellButton.setOnClickListener(new View.OnClickListener()
+        Button sellButton = (Button)findViewById(R.id.button_sell);
+        sellButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
@@ -165,8 +140,8 @@ public class HomeActivity extends AppCompatActivity
 
     private void inflateBorrowButton()
     {
-        mBorrowButton = (Button)findViewById(R.id.button_borrow);
-        mBorrowButton.setOnClickListener(new View.OnClickListener()
+        Button borrowButton = (Button)findViewById(R.id.button_borrow);
+        borrowButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
@@ -178,8 +153,8 @@ public class HomeActivity extends AppCompatActivity
 
     private void inflateGiveButton()
     {
-        mGiveButton = (Button)findViewById(R.id.button_give);
-        mGiveButton.setOnClickListener(new View.OnClickListener()
+        Button giveButton = (Button)findViewById(R.id.button_give);
+        giveButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
@@ -191,8 +166,8 @@ public class HomeActivity extends AppCompatActivity
 
     private void inflateOfferServiceButton()
     {
-        mOfferServiceButton = (Button)findViewById(R.id.button_offer_service);
-        mOfferServiceButton.setOnClickListener(new View.OnClickListener() {
+        Button offerServiceButton = (Button)findViewById(R.id.button_offer_service);
+        offerServiceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -202,8 +177,8 @@ public class HomeActivity extends AppCompatActivity
 
     private void inflateRequestServiceButton()
     {
-        mRequestServiceButton = (Button)findViewById(R.id.button_request_service);
-        mRequestServiceButton.setOnClickListener(new View.OnClickListener() {
+        Button requestServiceButton = (Button)findViewById(R.id.button_request_service);
+        requestServiceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

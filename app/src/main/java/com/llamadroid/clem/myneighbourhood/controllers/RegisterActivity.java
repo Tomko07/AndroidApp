@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.llamadroid.clem.myneighbourhood.R;
+import com.llamadroid.clem.myneighbourhood.SaveSharedPreference;
+import com.llamadroid.clem.myneighbourhood.models.CurrentUser;
 import com.llamadroid.clem.myneighbourhood.models.User;
 import com.llamadroid.clem.myneighbourhood.models.UserMap;
 
@@ -118,10 +120,12 @@ public class RegisterActivity extends AppCompatActivity
 
                     User user = new User(email, firstName, lastName, password, postcode);
                     UserMap.get(RegisterActivity.this).addUser(user);
+                    CurrentUser.logUserIn(UserMap.get(RegisterActivity.this).getUser(user.getEmail()));
 
-                    Intent intent = new Intent();
-                    intent.putExtra(NEW_USER, user);
-                    setResult(RESULT_OK, intent);
+                    // Save user's email address to restore his/her session later
+                    SaveSharedPreference.setUserName(RegisterActivity.this, user.getEmail());
+
+                    setResult(RESULT_OK);
                     finish();
                 }
             }
@@ -130,7 +134,7 @@ public class RegisterActivity extends AppCompatActivity
 
     private void printErrorToast(String errorMessage)
     {
-        Toast.makeText(RegisterActivity.this, errorMessage,
+        Toast.makeText(this, errorMessage,
                 Toast.LENGTH_SHORT).show();
     }
 

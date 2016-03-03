@@ -8,6 +8,7 @@ import android.widget.Button;
 
 import com.llamadroid.clem.myneighbourhood.R;
 import com.llamadroid.clem.myneighbourhood.SaveSharedPreference;
+import com.llamadroid.clem.myneighbourhood.models.CurrentUser;
 import com.llamadroid.clem.myneighbourhood.models.User;
 
 /**
@@ -57,8 +58,9 @@ public class WelcomeActivity extends AppCompatActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
         // If user confirmed login or registration process, retrieve the corresponding user object
-        if(resultCode == RESULT_OK && data != null)
+        if(resultCode == RESULT_OK)
         {
+            /*
             User user;
             switch(requestCode)
             {
@@ -74,13 +76,11 @@ public class WelcomeActivity extends AppCompatActivity
                     return;
             }
 
-            // Save user's email address to restore his/her session later
-            SaveSharedPreference.setUserName(this, user.getEmail());
+
+            CurrentUser.logUserIn(user);*/
 
             // Start HomeActivity and stop this activity
-            Intent intent = new Intent(this, HomeActivity.class);
-            intent.putExtra(EXTRA_USER, user);
-            startActivity(intent);
+            startActivity(new Intent(this, HomeActivity.class));
             finish();
         }
     }

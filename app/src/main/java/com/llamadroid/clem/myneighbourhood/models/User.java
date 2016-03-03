@@ -2,6 +2,7 @@ package com.llamadroid.clem.myneighbourhood.models;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 
 /**
  * Class storing all the user's details
@@ -12,6 +13,7 @@ public class User implements Serializable
     private String mEmail;
     private String mFirstName;
     private String mLastName;
+    private String mUserName;
     private String mPassword;
     private String mPostcode;
     private String mAddress;
@@ -19,14 +21,18 @@ public class User implements Serializable
     private Date mDOB;
     private char mGender;
     private String mDescription;
+
     private boolean mVerified;
     private boolean mIsLoggedOn;
+
+    private HashSet<Post> mPosts;
 
 
     public User()
     {
         mVerified = false;
         mIsLoggedOn = true;
+        mPosts = new HashSet<>();
     }
 
     public User(String email, String firstName, String lastName, String password, String postcode)
@@ -34,10 +40,12 @@ public class User implements Serializable
         mEmail = email;
         mFirstName = firstName;
         mLastName = lastName;
+        mUserName = firstName + " " + lastName;
         mPassword = password;
         mPostcode = postcode;
         mVerified = false;
         mIsLoggedOn = true;
+        mPosts = new HashSet<>();
     }
 
     public String getEmail()
@@ -68,6 +76,16 @@ public class User implements Serializable
     public void setLastName(String lastName)
     {
         mLastName = lastName;
+    }
+
+    public String getUserName()
+    {
+        return mUserName;
+    }
+
+    public void setUserName(String userName)
+    {
+        mUserName = userName;
     }
 
     public String getPassword()
@@ -158,5 +176,20 @@ public class User implements Serializable
     public void setIsLoggedOn(boolean isLoggedOn)
     {
         mIsLoggedOn = isLoggedOn;
+    }
+
+    public HashSet<Post> getPosts()
+    {
+        return mPosts;
+    }
+
+    public boolean addPost(Post post)
+    {
+        return post != null && mPosts.add(post);
+    }
+
+    public boolean deletePost(Post post)
+    {
+        return post != null && mPosts.remove(post);
     }
 }

@@ -5,69 +5,84 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    style="@style/Background"
     tools:context="com.llamadroid.clem.myneighbourhood.RegisterActivity">
 
     <Button android:id="@+id/button_registration_cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_cancel"/>
+        android:text="@string/button_cancel"
+        style="@style/ButtonStyle"/>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/logo"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:maxWidth="140dp"
-            android:maxHeight="140dp"
-            android:contentDescription="@string/logo"
-            android:paddingBottom="20dp"/>
+            android:layout_margin="30dp"
+            android:orientation="vertical"
+            android:gravity="center">
 
-        <EditText android:id="@+id/field_register_email"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="@string/hint_email"
-            android:inputType="textEmailAddress"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/logo"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:maxWidth="140dp"
+                android:maxHeight="140dp"
+                android:contentDescription="@string/logo"
+                android:paddingBottom="20dp"/>
 
-        <EditText android:id="@+id/field_register_password"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="@string/hint_password"
-            android:inputType="textPassword"/>
+            <EditText android:id="@+id/field_register_email"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/hint_email"
+                android:inputType="textEmailAddress"
+                style="@style/FieldStyle"/>
 
-        <EditText android:id="@+id/field_confirm_password"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="@string/hint_confirm_password"
-            android:inputType="textPassword"/>
+            <EditText android:id="@+id/field_register_password"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/hint_password"
+                android:inputType="textPassword"
+                style="@style/FieldStyle"/>
 
-        <EditText android:id="@+id/field_register_fname"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="@string/hint_fname"/>
+            <EditText android:id="@+id/field_confirm_password"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/hint_confirm_password"
+                android:inputType="textPassword"
+                style="@style/FieldStyle"/>
 
-        <EditText android:id="@+id/field_register_lname"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="@string/hint_lname"/>
+            <EditText android:id="@+id/field_register_fname"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/hint_fname"
+                style="@style/FieldStyle"/>
 
-        <EditText android:id="@+id/field_register_postcode"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="@string/hint_postcode"/>
+            <EditText android:id="@+id/field_register_lname"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/hint_lname"
+                style="@style/FieldStyle"/>
 
-        <Button android:id="@+id/button_register"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/button_register"/>
+            <EditText android:id="@+id/field_register_postcode"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="@string/hint_postcode"
+                style="@style/FieldStyle"/>
 
-    </LinearLayout>
+            <Button android:id="@+id/button_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/button_register"
+                style="@style/ButtonStyle"/>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>
