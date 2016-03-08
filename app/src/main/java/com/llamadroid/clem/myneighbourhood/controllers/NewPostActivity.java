@@ -110,7 +110,7 @@ public class NewPostActivity extends AppCompatActivity
 
                 // Create new Post object
                 User user = CurrentUser.getCurrentUser();
-                Post post = new Post(category, title, content, new ArrayList<File>(), user);
+                Post post = new Post(category, title, content, user);
 
                 // Add the post to the global Post set.
                 PostSet.get(NewPostActivity.this).addPost(post);

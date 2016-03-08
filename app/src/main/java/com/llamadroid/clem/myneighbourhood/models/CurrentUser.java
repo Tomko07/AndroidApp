@@ -3,7 +3,7 @@ package com.llamadroid.clem.myneighbourhood.models;
 
 /**
  * Class keeping a reference to the logged in user
- * (instead of passing User objects as extras between activities.
+ * (instead of passing User objects as extras between activities).
  */
 public class CurrentUser
 {
@@ -22,7 +22,10 @@ public class CurrentUser
 
     public static void logUserOut()
     {
-        mUser.setIsLoggedOn(false);
-        mUser = null;
+        if(mUser != null)
+        {
+            mUser.setIsLoggedOn(false);
+            mUser = null;
+        }
     }
 }

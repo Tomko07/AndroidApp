@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center|top"
+    style="@style/Background">
+
+    <include layout="@layout/app_bar"/>
+
+    <TextView
+        android:id="@+id/view_post_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        style="@style/ViewPostTitleStyle"
+        tools:text="Post title"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/view_post_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ViewPostAuthorStyle"
+            tools:text="Category"/>
+
+        <TextView
+            android:id="@+id/view_post_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/ViewPostAuthorStyle"
+            tools:text=" - Status"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_margin="15dp"
+        android:fillViewport="true">
+
+        <TextView
+            android:id="@+id/view_post_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/ViewPostContentStyle"
+            tools:text="Lorem ipsum dolor sit amet, volutpat curabitur mi in. Sunt amet nibh molestie sed quis, tincidunt diam vitae eget cum integer.
+            Odio nibh delectus lorem et dui odio. Metus quisque neque est vulputate magna, massa volutpat felis, odio justo in donec.
+            Dolor sed curabitur vivamus justo purus tempus. "/>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/view_post_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            tools:text="Author"
+            style="@style/ViewPostAuthorStyle"/>
+
+        <TextView
+            android:id="@+id/view_post_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:layout_weight="1"
+            tools:text="Date"
+            style="@style/ViewPostAuthorStyle"/>
+
+    </LinearLayout>
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:stretchColumns="3">
+
+        <TableRow>
+            <Button
+                android:id="@+id/button_add_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@string/button_comment"
+                style="@style/ButtonStyle"/>
+
+            <Button
+                android:id="@+id/button_contact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@string/button_contact"
+                style="@style/ButtonStyle"/>
+        </TableRow>
+
+        <TableRow>
+            <Button
+                android:id="@+id/button_report"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@string/button_report"
+                style="@style/ButtonStyle"/>
+
+            <Button
+                android:id="@+id/button_locate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@string/button_locate"
+                style="@style/ButtonStyle"/>
+        </TableRow>
+
+    </TableLayout>
+
+
+</LinearLayout>

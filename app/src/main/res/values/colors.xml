@@ -3,7 +3,11 @@
     <color name="colorPrimary">#fdce87</color>
     <color name="colorPrimaryDark">#009688</color>
     <color name="colorAccent">#009688</color>
+    <color name="dark">#212121</color>
+    <color name="darkGrey">#494747</color>
+    <color name="grey">#727272</color>
     <color name="burlywood">#fdce87</color>
     <color name="brown">#7E4515</color>
     <color name="lightCream">#fdf5e6</color>
+    <color name="cream">#F6E6C8</color>
 </resources>

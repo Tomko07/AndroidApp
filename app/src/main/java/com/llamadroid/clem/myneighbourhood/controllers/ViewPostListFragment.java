@@ -1,10 +1,11 @@
 package com.llamadroid.clem.myneighbourhood.controllers;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ViewPostsFragment extends Fragment
+public class ViewPostListFragment extends Fragment
 {
     private RecyclerView mPostRecyclerView;
     private PostAdapter mAdapter;
@@ -29,7 +30,7 @@ public class ViewPostsFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.fragment_view_posts,
+        View view = inflater.inflate(R.layout.fragment_view_post_list,
                 container, false);
         mPostRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_posts);
         mPostRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -49,33 +50,55 @@ public class ViewPostsFragment extends Fragment
     }
 
     private class PostHolder extends RecyclerView.ViewHolder
+            implements View.OnClickListener
     {
         private TextView mTitleTextView;
         private TextView mAuthorTextView;
         private TextView mDateTextView;
         private TextView mStatusTextView;
+        private TextView mCategoryTextView;
 
         private Post mPost;
 
         public PostHolder(View itemView)
         {
             super(itemView);
+
+            itemView.setOnClickListener(this);
             mTitleTextView = (TextView) itemView.findViewById(R.id.list_item_post_title);
             mAuthorTextView = (TextView) itemView.findViewById(R.id.list_item_post_author);
             mDateTextView = (TextView) itemView.findViewById(R.id.list_item_post_date);
             mStatusTextView = (TextView)itemView.findViewById(R.id.list_item_post_status);
+            mCategoryTextView = (TextView) itemView.findViewById(R.id.list_item_post_category);
         }
 
         public void bindPost(Post post)
         {
             mPost = post;
             mTitleTextView.setText(mPost.getTitle());
-            mAuthorTextView.setText(mPost.getAuthor().getEmail()); // CHANGE TO USERNAME
-            SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+            mAuthorTextView.setText(mPost.getAuthor().getUserName());
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
             mDateTextView.setText(format.format(post.getDate()));
             mStatusTextView.setText(post.getCategory().printStatus());
+            mStatusTextView.setTextColor(Color.parseColor(post.getCategory().getColor()));
+            mCategoryTextView.setText(post.getCategory().getCategoryName());
+            mCategoryTextView.setTextColor(Color.parseColor(post.getCategory().getColor()));
             if(post.getCategory().getStatus())
+            {
                 mStatusTextView.setVisibility(View.VISIBLE);
+                mCategoryTextView.setVisibility(View.INVISIBLE);
+            }
+            else
+            {
+                mStatusTextView.setVisibility(View.INVISIBLE);
+                mCategoryTextView.setVisibility(View.VISIBLE);
+            }
+        }
+
+        @Override
+        public void onClick(View view)
+        {
+            startActivity(ViewPostActivity.newIntent(getActivity(), mPost.getId()));
         }
     }
 
@@ -86,7 +109,6 @@ public class ViewPostsFragment extends Fragment
         public PostAdapter(List<Post> posts)
         {
             mPosts = posts;
-            Log.d("LIST", "" + mPosts.size());
         }
 
         @Override

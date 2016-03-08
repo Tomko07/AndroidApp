@@ -19,8 +19,6 @@ public class Post implements Comparable<Post>
     private Category mCategory;
     private String mTitle;
     private String mContent;
-    //private Set<PostType.Tags> mTags;
-    private List<File> mPhotos;
     private Date mDate;
     private User mAuthor;
 
@@ -28,19 +26,15 @@ public class Post implements Comparable<Post>
     public Post()
     {
         mId = UUID.randomUUID();
-        mPhotos = new ArrayList<>();
         mDate = new Date();
     }
 
-    public Post(Category category, String title, String content, List<File> photos,
-                User author)
+    public Post(Category category, String title, String content, User author)
     {
         mId = UUID.randomUUID();
         mCategory = category;
         mTitle = title;
         mContent = content;
-        //mTags = tags;
-        mPhotos = photos;
         mDate = new Date();
         mAuthor = author;
     }
@@ -63,16 +57,6 @@ public class Post implements Comparable<Post>
     public String getContent()
     {
         return mContent;
-    }
-
-    /*public Set<PostType.Tags> getTags()
-    {
-        return mTags;
-    }*/
-
-    public List<File> getPhotos()
-    {
-        return mPhotos;
     }
 
     public Date getDate()
@@ -101,9 +85,9 @@ public class Post implements Comparable<Post>
         mContent = content;
     }
 
-    public void setPhotos(List<File> photos)
+    public void setDate(Date date)
     {
-        mPhotos = photos;
+        mDate = date;
     }
 
     public void setAuthor(User author)
@@ -119,6 +103,6 @@ public class Post implements Comparable<Post>
         else if(this.mDate.before(other.mDate))
             return 1;
         else
-            return 0;
+            return this.getTitle().compareTo(other.getTitle());
     }
 }

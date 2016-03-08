@@ -40,7 +40,7 @@ public class User implements Serializable
         mEmail = email;
         mFirstName = firstName;
         mLastName = lastName;
-        mUserName = firstName + " " + lastName;
+        mUserName = firstName + " " + lastName.charAt(0);
         mPassword = password;
         mPostcode = postcode;
         mVerified = false;
@@ -80,6 +80,8 @@ public class User implements Serializable
 
     public String getUserName()
     {
+        if(mUserName == null)
+            mUserName = mFirstName + " " + mLastName.charAt(0);
         return mUserName;
     }
 

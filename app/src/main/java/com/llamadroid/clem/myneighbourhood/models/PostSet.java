@@ -3,17 +3,25 @@ package com.llamadroid.clem.myneighbourhood.models;
 import android.content.Context;
 import android.util.Log;
 
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.SortedSet;
+import java.util.Scanner;
 import java.util.TreeSet;
+import java.util.UUID;
 
 
+/**
+ * Singleton class storing the different messages posted by users.
+ */
 public class PostSet
 {
     private static PostSet sPostList;
-    private HashSet<Post> mPosts;
+    // Keeping posts sorted by date.
+    private TreeSet<Post> mPosts;
 
     public static PostSet get(Context context)
     {
@@ -22,30 +30,55 @@ public class PostSet
         return sPostList;
     }
 
+    // Extracting hard coded posts from txt file.
     private PostSet(Context context)
     {
-        mPosts = new HashSet<>();
+        mPosts = new TreeSet<>();
 
-        User[] users = new User[3];
-        users[0] = UserMap.get(context).getUser("111@gmail.com");
-        users[1] = UserMap.get(context).getUser("222@gmail.com");
-        users[2] = UserMap.get(context).getUser("333@gmail.com");
+        InputStreamReader reader = null;
+        Scanner scanner = null;
 
-        Category[] categories = new Category[3];
-        categories[0] = new Category(CategoryType.Announcement);
-        categories[1] = new Category(CategoryType.RequestService);
-        categories[2] = new Category(CategoryType.Found);
-
-        // Populating the map with fake posts
-        for(int i = 1; i <= 10; i++)
+        try
         {
-            Post post = new Post();
-            post.setAuthor(users[i % 3]);
-            post.setCategory(categories[i % 3]);
-            post.setTitle("Title " + i);
-            post.setContent("Content " + i);
+            try
+            {
+                reader = new InputStreamReader(context.getResources().getAssets().open("Posts.txt"));
+                scanner = new Scanner(reader);
 
-            mPosts.add(post);
+                while (scanner.hasNextLine())
+                {
+                    String line = scanner.nextLine();
+
+                    Post post = new Post();
+                    post.setAuthor(UserMap.get(context).getUser(line.substring(0, line.indexOf(" "))));
+                    post.setTitle(line.substring(line.indexOf('[') + 1, line.indexOf(']')));
+                    post.setContent(line.substring(line.indexOf('{') + 1, line.indexOf('}')));
+                    String category = line.substring(line.indexOf('(') + 1, line.indexOf(')'));
+                    post.setCategory(new Category(CategoryType.getCategory(category)));
+                    String date = line.substring(line.indexOf('\\') + 1, line.indexOf('/'));
+                    try
+                    {
+                        post.setDate(new SimpleDateFormat("dd-MM-yyyy").parse(date));
+                    }
+                    catch (ParseException pe)
+                    {
+                        Log.e("UserMap", "ParseException caught", pe);
+                    }
+
+                    mPosts.add(post);
+                }
+            }
+            finally
+            {
+                if(scanner != null)
+                    scanner.close();
+                if(reader != null)
+                    reader.close();
+            }
+        }
+        catch(IOException ioe)
+        {
+            Log.e("UserMap", "IOException caught", ioe);
         }
     }
 
@@ -59,6 +92,13 @@ public class PostSet
         return new ArrayList<>(mPosts);
     }
 
+    public Post getPost(UUID postId)
+    {
+        for(Post post : mPosts)
+            if(post.getId().equals(postId))
+                return post;
+        return null;
+    }
 
     public void addPost(Post post)
     {

@@ -16,6 +16,11 @@ public class Category
         mStatus = false;
     }
 
+    public String getCategoryName()
+    {
+        return mCategory.getName();
+    }
+
     public boolean getStatus()
     {
         return mStatus;
@@ -24,6 +29,11 @@ public class Category
     public void setStatus(boolean status)
     {
         mStatus = status;
+    }
+
+    public String getColor()
+    {
+        return mCategory.getColor();
     }
 
     public String printStatus()
