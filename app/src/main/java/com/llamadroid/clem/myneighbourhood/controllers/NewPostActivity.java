@@ -1,9 +1,11 @@
 package com.llamadroid.clem.myneighbourhood.controllers;
 
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -18,9 +20,6 @@ import com.llamadroid.clem.myneighbourhood.models.CurrentUser;
 import com.llamadroid.clem.myneighbourhood.models.Post;
 import com.llamadroid.clem.myneighbourhood.models.PostSet;
 import com.llamadroid.clem.myneighbourhood.models.User;
-
-import java.io.File;
-import java.util.ArrayList;
 
 
 /**
@@ -42,17 +41,49 @@ public class NewPostActivity extends AppCompatActivity
 
         // Add toolbar
         setSupportActionBar((Toolbar) findViewById(R.id.app_bar));
-        ActionBar actionBar = getSupportActionBar();
-        if(actionBar != null)
-        {
-            actionBar.setDefaultDisplayHomeAsUpEnabled(true);
-            actionBar.setIcon(R.drawable.logo);
-        }
+        if(getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Inflate widgets and add listener to button.
         inflateSpinner();
         inflateTextFields();
         inflateSubmitButton();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch(item.getItemId())
+        {
+            case R.id.menu_item_profile:
+                // Start profile activity
+                return true;
+            case R.id.menu_item_messages:
+                // Start messages activity
+                return true;
+            case R.id.menu_item_home:
+                // Already on the home screen -> do nothing.
+                return true;
+            case R.id.menu_item_posts:
+                // Start posts activity
+                return true;
+            case R.id.menu_item_settings:
+                // Start settings activity
+                return true;
+            case R.id.menu_item_request_category:
+                // Start request category activity
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_bar, menu);
+        return true;
     }
 
 

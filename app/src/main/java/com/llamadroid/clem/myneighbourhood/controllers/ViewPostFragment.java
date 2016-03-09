@@ -2,7 +2,6 @@ package com.llamadroid.clem.myneighbourhood.controllers;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,11 +12,10 @@ import com.llamadroid.clem.myneighbourhood.R;
 import com.llamadroid.clem.myneighbourhood.models.Post;
 import com.llamadroid.clem.myneighbourhood.models.PostSet;
 
+import java.text.SimpleDateFormat;
 import java.util.UUID;
 
-/**
- * Created by Clem on 07/03/2016.
- */
+
 public class ViewPostFragment extends Fragment
 {
     private Post mPost;
@@ -78,8 +76,9 @@ public class ViewPostFragment extends Fragment
         mAuthorView = (TextView) view.findViewById(R.id.view_post_author);
         mAuthorView.setText(mPost.getAuthor().getUserName());
 
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
         mDateView = (TextView) view.findViewById(R.id.view_post_date);
-        mDateView.setText(mPost.getDate().toString());
+        mDateView.setText(format.format(mPost.getDate()));
     }
 
     private void inflateCommentButton(View view)

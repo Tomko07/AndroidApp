@@ -1,6 +1,5 @@
 package com.llamadroid.clem.myneighbourhood.controllers;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -30,8 +29,8 @@ public class ViewPostListFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.fragment_view_post_list,
-                container, false);
+        View view = inflater.inflate(R.layout.fragment_view_post_list, container, false);
+
         mPostRecyclerView = (RecyclerView) view.findViewById(R.id.recycler_view_posts);
         mPostRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -39,6 +38,7 @@ public class ViewPostListFragment extends Fragment
 
         return view;
     }
+
 
     private void updateUI()
     {
