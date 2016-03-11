@@ -13,18 +13,20 @@ import com.llamadroid.clem.myneighbourhood.models.Post;
 import com.llamadroid.clem.myneighbourhood.models.PostSet;
 
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 import java.util.UUID;
 
 
+/**
+ * Class handling a single post view.
+ */
 public class ViewPostFragment extends Fragment
 {
     private Post mPost;
 
-    private TextView mTitleView, mCategoryView, mStatusView, mContentView, mAuthorView, mDateView;
-    private Button mCommentButton, mReportButton, mContactButton, mLocateButton;
-
     private static final String ARG_POST_ID = "post_id";
-    
+
+
     public static ViewPostFragment newInstance(UUID postId)
     {
         Bundle args = new Bundle();
@@ -42,6 +44,7 @@ public class ViewPostFragment extends Fragment
         mPost = PostSet.get(getActivity()).getPost(postId);
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
@@ -57,78 +60,90 @@ public class ViewPostFragment extends Fragment
 
     private void inflateTextViews(View view)
     {
-        mTitleView = (TextView) view.findViewById(R.id.view_post_title);
-        mTitleView.setText(mPost.getTitle());
+        TextView titleView = (TextView) view.findViewById(R.id.view_post_title);
+        titleView.setText(mPost.getTitle());
 
-        mCategoryView = (TextView) view.findViewById(R.id.view_post_category);
-        mCategoryView.setText(mPost.getCategory().getCategoryName());
+        TextView categoryView = (TextView) view.findViewById(R.id.view_post_category);
+        categoryView.setText(mPost.getCategory().getCategoryName());
 
-        mStatusView = (TextView) view.findViewById(R.id.view_post_status);
-        mStatusView.setText(mPost.getCategory().printStatus());
+        TextView statusView = (TextView) view.findViewById(R.id.view_post_status);
+        statusView.setText(mPost.getCategory().printStatus());
+
+        /* Either display the status of the post if it has changed (the item was sold,
+         * what was lost was found, ...) or the category of the post (question, found, event, ...)
+         */
         if(mPost.getCategory().getStatus())
-            mStatusView.setVisibility(View.VISIBLE);
+            statusView.setVisibility(View.VISIBLE);
         else
-            mStatusView.setVisibility(View.GONE);
+            statusView.setVisibility(View.GONE);
 
-        mContentView = (TextView) view.findViewById(R.id.view_post_content);
-        mContentView.setText(mPost.getContent());
+        TextView contentView = (TextView) view.findViewById(R.id.view_post_content);
+        contentView.setText(mPost.getContent());
 
-        mAuthorView = (TextView) view.findViewById(R.id.view_post_author);
-        mAuthorView.setText(mPost.getAuthor().getUserName());
-
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-        mDateView = (TextView) view.findViewById(R.id.view_post_date);
-        mDateView.setText(format.format(mPost.getDate()));
-    }
-
-    private void inflateCommentButton(View view)
-    {
-        mCommentButton = (Button) view.findViewById(R.id.button_add_comment);
-        mCommentButton.setOnClickListener(new View.OnClickListener()
+        TextView authorView = (TextView) view.findViewById(R.id.view_post_author);
+        authorView.setText(mPost.getAuthor().getUserName());
+        authorView.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
+                startActivity(ViewProfileActivity.newIntent(getContext(), mPost.getAuthor()));
+            }
+        });
 
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.UK);
+        TextView dateView = (TextView) view.findViewById(R.id.view_post_date);
+        dateView.setText(format.format(mPost.getDate()));
+    }
+
+    private void inflateCommentButton(View view)
+    {
+        Button commentButton = (Button) view.findViewById(R.id.button_add_comment);
+        commentButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                // TODO
             }
         });
     }
 
     private void inflateReportButton(View view)
     {
-        mReportButton = (Button) view.findViewById(R.id.button_report);
-        mReportButton.setOnClickListener(new View.OnClickListener()
+        Button reportButton = (Button) view.findViewById(R.id.button_report);
+        reportButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-
+                // TODO
             }
         });
     }
 
     private void inflateContactButton(View view)
     {
-        mContactButton = (Button) view.findViewById(R.id.button_contact);
-        mContactButton.setOnClickListener(new View.OnClickListener()
+        Button contactButton = (Button) view.findViewById(R.id.button_contact);
+        contactButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-
+                // TODO
             }
         });
     }
 
     private void inflateLocateButton(View view)
     {
-        mLocateButton = (Button) view.findViewById(R.id.button_locate);
-        mLocateButton.setOnClickListener(new View.OnClickListener()
+        Button locateButton = (Button) view.findViewById(R.id.button_locate);
+        locateButton.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-
+                // TODO
             }
         });
     }

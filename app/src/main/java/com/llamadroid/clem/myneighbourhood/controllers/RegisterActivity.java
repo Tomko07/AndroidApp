@@ -28,8 +28,6 @@ public class RegisterActivity extends AppCompatActivity
     /** Text fields containing the user's postcode and first and last names. */
     private EditText mFNameField, mLNameField, mPostcodeField;
 
-    /** Key for the intent extra. */
-    private static final String NEW_USER = "com.llamadroid.clem.myneighbourhood.new_user";
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -116,7 +114,18 @@ public class RegisterActivity extends AppCompatActivity
                 else
                 {
                     String firstName = mFNameField.getText().toString();
+                    if("".equals(firstName))
+                    {
+                        printErrorToast("Please enter your first name.");
+                        return;
+                    }
+
                     String lastName = mLNameField.getText().toString();
+                    if("".equals(lastName))
+                    {
+                        printErrorToast("Please enter your last name.");
+                        return;
+                    }
 
                     User user = new User(email, firstName, lastName, password, postcode);
                     UserMap.get(RegisterActivity.this).addUser(user);
@@ -141,7 +150,7 @@ public class RegisterActivity extends AppCompatActivity
     private boolean emailIsValid(String email)
     {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
-                && UserMap.get(RegisterActivity.this).getUser(email) == null;
+                && UserMap.get(this).getUser(email) == null;
     }
 
     private boolean postcodeIsValid(String postcode)
@@ -159,13 +168,5 @@ public class RegisterActivity extends AppCompatActivity
     public static Intent newIntent(Context packageContext)
     {
         return new Intent(packageContext, RegisterActivity.class);
-    }
-
-    /**
-     * To be used by other activities to retrieve user object.
-     */
-    public static User getLoggedInUser(Intent result)
-    {
-        return (User)result.getSerializableExtra(NEW_USER);
     }
 }

@@ -7,9 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.llamadroid.clem.myneighbourhood.R;
-import com.llamadroid.clem.myneighbourhood.SaveSharedPreference;
-import com.llamadroid.clem.myneighbourhood.models.CurrentUser;
-import com.llamadroid.clem.myneighbourhood.models.User;
+
 
 /**
  * Class handling user interactions with the welcoming screen.
@@ -18,11 +16,7 @@ public class WelcomeActivity extends AppCompatActivity
 {
     /** Request code for LoginActivity. */
     private static final int REQUEST_CODE_LOGIN = 0;
-    /** Request code for RegisterActivity. */
-    private static final int REQUEST_CODE_REGISTER = 1;
-    /** Key for the intent extra. */
-    public static final String EXTRA_USER =
-            "com.llamadroid.clem.myneighbourhood.user";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -60,34 +54,9 @@ public class WelcomeActivity extends AppCompatActivity
         // If user confirmed login or registration process, retrieve the corresponding user object
         if(resultCode == RESULT_OK)
         {
-            /*
-            User user;
-            switch(requestCode)
-            {
-                // User logged in
-                case REQUEST_CODE_LOGIN:
-                    user = LoginActivity.getLoggedInUser(data);
-                    break;
-                // User registered
-                case REQUEST_CODE_REGISTER:
-                    user = RegisterActivity.getLoggedInUser(data);
-                    break;
-                default:
-                    return;
-            }
-
-
-            CurrentUser.logUserIn(user);*/
-
             // Start HomeActivity and stop this activity
             startActivity(new Intent(this, HomeActivity.class));
             finish();
         }
-    }
-
-    /* To be used by other activities to retrieve user object. */
-    public static User getLoggedInUser(Intent result)
-    {
-        return (User)result.getSerializableExtra(EXTRA_USER);
     }
 }

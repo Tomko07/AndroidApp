@@ -2,71 +2,72 @@
 <manifest package="com.llamadroid.clem.myneighbourhood"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".controllers.MainActivity"
             android:label="@string/title_activity_main"
             android:noHistory="true"
             android:theme="@style/AppTheme">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
         <activity
             android:name=".controllers.WelcomeActivity"
             android:label="@string/title_activity_welcome"
             android:theme="@style/AppTheme">
         </activity>
-
         <activity
             android:name=".controllers.LoginActivity"
             android:label="@string/title_activity_login"
             android:theme="@style/AppTheme">
         </activity>
-
         <activity
             android:name=".controllers.RegisterActivity"
             android:label="@string/title_activity_register"
             android:theme="@style/AppTheme">
         </activity>
-
         <activity
             android:name=".controllers.HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme">
         </activity>
-
         <activity
             android:name=".controllers.NewPostActivity"
             android:label="@string/title_activity_new_post"
-            android:theme="@style/AppTheme"
-            android:parentActivityName=".controllers.HomeActivity">
+            android:parentActivityName=".controllers.HomeActivity"
+            android:theme="@style/AppTheme">
         </activity>
-
         <activity
             android:name=".controllers.ViewPostListActivity"
             android:label="@string/title_activity_view_posts_list"
-            android:theme="@style/AppTheme"
-            android:parentActivityName=".controllers.HomeActivity">
+            android:parentActivityName=".controllers.HomeActivity"
+            android:theme="@style/AppTheme">
         </activity>
-
         <activity
-            android:name=".controllers.ViewPostActivity"
-            android:label="@string/title_activity_view_post"
-            android:theme="@style/AppTheme"
-            android:parentActivityName=".controllers.ViewPostListActivity">
+            android:name=".controllers.PostPagerActivity"
+            android:label="@string/title_activity_post_pager"
+            android:parentActivityName=".controllers.ViewPostListActivity"
+            android:theme="@style/AppTheme">
         </activity>
-
+        <activity
+            android:name=".controllers.ViewProfileActivity"
+            android:label="@string/title_activity_view_profile"
+            android:theme="@style/AppTheme">
+        </activity>
+        <activity
+            android:name=".controllers.EditProfileActivity"
+            android:label="@string/title_activity_edit_profile"
+            android:parentActivityName=".controllers.HomeActivity"
+            android:theme="@style/AppTheme">
+        </activity>
     </application>
 
 </manifest>

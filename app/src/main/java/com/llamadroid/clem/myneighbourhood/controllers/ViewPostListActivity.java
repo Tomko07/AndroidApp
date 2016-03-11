@@ -1,5 +1,6 @@
 package com.llamadroid.clem.myneighbourhood.controllers;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,11 +11,16 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.llamadroid.clem.myneighbourhood.R;
+import com.llamadroid.clem.myneighbourhood.SaveSharedPreference;
+import com.llamadroid.clem.myneighbourhood.ToolbarOptions;
+import com.llamadroid.clem.myneighbourhood.models.CurrentUser;
 
 
+/**
+ * Class creating a fragment to display the list of posts.
+ */
 public class ViewPostListActivity extends AppCompatActivity
 {
-
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -40,29 +46,8 @@ public class ViewPostListActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-        switch(item.getItemId())
-        {
-            case R.id.menu_item_profile:
-                // Start profile activity
-                return true;
-            case R.id.menu_item_messages:
-                // Start messages activity
-                return true;
-            case R.id.menu_item_home:
-                // Already on the home screen -> do nothing.
-                return true;
-            case R.id.menu_item_posts:
-                // Start posts activity
-                return true;
-            case R.id.menu_item_settings:
-                // Start settings activity
-                return true;
-            case R.id.menu_item_request_category:
-                // Start request category activity
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+        return ToolbarOptions.getOption(item.getItemId(), this)
+                || super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -71,11 +56,5 @@ public class ViewPostListActivity extends AppCompatActivity
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_bar, menu);
         return true;
-    }
-
-    //@Override
-    protected Fragment createFragment()
-    {
-        return new ViewPostListFragment();
     }
 }

@@ -3,7 +3,6 @@ package com.llamadroid.clem.myneighbourhood.controllers;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import com.llamadroid.clem.myneighbourhood.R;
 import com.llamadroid.clem.myneighbourhood.SaveSharedPreference;
@@ -17,10 +16,6 @@ import com.llamadroid.clem.myneighbourhood.models.UserMap;
  */
 public class MainActivity extends AppCompatActivity
 {
-    /** Key for intent extra. */
-    private static final String EXTRA_USER = "com.llamadroid.clem.myneighbourhood.user";
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {

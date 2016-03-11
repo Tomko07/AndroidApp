@@ -5,7 +5,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-            
+
     </style>
 
     <style name="ToolBarStyle">
@@ -30,7 +30,7 @@
         <item name="android:textColorHint">@color/grey</item>
         <item name="android:textColor">@color/dark</item>
     </style>
-    
+
     <style name="Background">
         <item name="android:background">@color/lightCream</item>"
     </style>
@@ -49,7 +49,7 @@
         <item name="android:textColor">@color/dark</item>
         <item name="android:textSize">25sp</item>
     </style>
-    
+
     <style name="ViewPostContentStyle">
         <item name="android:textColor">@color/darkGrey</item>
         <item name="android:textSize">20sp</item>
@@ -57,6 +57,18 @@
 
     <style name="ViewPostAuthorStyle">
         <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/grey</item>
+    </style>
+
+    <style name="ViewProfileInfoStyle">
+        <item name="android:textSize">25sp</item>
+        <item name="android:textColor">@color/grey</item>
+    </style>
+
+    <style name="EditProfileInfoStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/grey</item>
     </style>
 </resources>

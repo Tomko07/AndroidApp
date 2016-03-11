@@ -31,4 +31,8 @@
         android:id="@+id/menu_item_request_category"
         android:title="@string/item_request_category"/>
 
+    <item
+        android:id="@+id/menu_item_log_out"
+        android:title="@string/item_log_out"/>
+
 </menu>

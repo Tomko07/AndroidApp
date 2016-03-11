@@ -1,5 +1,6 @@
 package com.llamadroid.clem.myneighbourhood.controllers;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -14,6 +15,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.llamadroid.clem.myneighbourhood.R;
+import com.llamadroid.clem.myneighbourhood.SaveSharedPreference;
+import com.llamadroid.clem.myneighbourhood.ToolbarOptions;
 import com.llamadroid.clem.myneighbourhood.models.Category;
 import com.llamadroid.clem.myneighbourhood.models.CategoryType;
 import com.llamadroid.clem.myneighbourhood.models.CurrentUser;
@@ -53,29 +56,8 @@ public class NewPostActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-        switch(item.getItemId())
-        {
-            case R.id.menu_item_profile:
-                // Start profile activity
-                return true;
-            case R.id.menu_item_messages:
-                // Start messages activity
-                return true;
-            case R.id.menu_item_home:
-                // Already on the home screen -> do nothing.
-                return true;
-            case R.id.menu_item_posts:
-                // Start posts activity
-                return true;
-            case R.id.menu_item_settings:
-                // Start settings activity
-                return true;
-            case R.id.menu_item_request_category:
-                // Start request category activity
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+        return ToolbarOptions.getOption(item.getItemId(), this)
+                || super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -92,7 +74,7 @@ public class NewPostActivity extends AppCompatActivity
         mSpinner = (Spinner)findViewById(R.id.spinner_post_category);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.spinner_items_post_category,
-                R.layout.spinner_item);
+                R.layout.spinner_post_category);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mSpinner.setAdapter(adapter);
     }

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".controllers.ViewProfileActivity">
+
+    <include layout="@layout/app_bar"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/view_profile_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                style="@style/ViewProfileInfoStyle"
+                tools:text="Username"/>
+
+            <TextView
+                android:id="@+id/view_profile_gender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
+                android:gravity="end"
+                style="@style/ViewProfileInfoStyle"
+                tools:text="Gender"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/view_profile_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            style="@style/ViewProfileInfoStyle"
+            tools:text="Email"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/view_profile_postcode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:gravity="start"
+                style="@style/ViewProfileInfoStyle"
+                tools:text="Postcode"/>
+
+            <TextView
+                android:id="@+id/view_profile_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
+                android:gravity="end"
+                style="@style/ViewProfileInfoStyle"
+                tools:text="Phone"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/view_profile_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            style="@style/ViewProfileInfoStyle"
+            tools:text="Address"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/view_profile_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                style="@style/ViewProfileInfoStyle"
+                tools:text="Status"/>
+
+            <TextView
+                android:id="@+id/view_profile_dob"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
+                android:gravity="end"
+                style="@style/ViewProfileInfoStyle"
+                tools:text="Date Of Birth"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="5dp"
+                android:fillViewport="true">
+
+                <TextView
+                    android:id="@+id/view_profile_about"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    style="@style/ViewProfileInfoStyle"
+                    tools:text="About..."/>
+
+            </ScrollView>
+
+            <Button
+                android:id="@+id/button_profile_contact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/button_contact"
+                style="@style/ButtonStyle"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

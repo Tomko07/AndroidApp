@@ -9,6 +9,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 import java.util.TreeSet;
 import java.util.UUID;
@@ -58,7 +59,7 @@ public class PostSet
                     String date = line.substring(line.indexOf('\\') + 1, line.indexOf('/'));
                     try
                     {
-                        post.setDate(new SimpleDateFormat("dd-MM-yyyy").parse(date));
+                        post.setDate(new SimpleDateFormat("dd-MM-yyyy", Locale.UK).parse(date));
                     }
                     catch (ParseException pe)
                     {

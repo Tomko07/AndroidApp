@@ -1,6 +1,9 @@
 package com.llamadroid.clem.myneighbourhood.models;
 
 
+/**
+ * Different types of posts.
+ */
 public enum CategoryType
 {
     Announcement("Announcement", "", "#7D1E49"),

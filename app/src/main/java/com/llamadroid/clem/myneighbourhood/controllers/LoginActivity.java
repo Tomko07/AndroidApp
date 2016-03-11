@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.llamadroid.clem.myneighbourhood.SaveSharedPreference;
@@ -23,9 +24,6 @@ public class LoginActivity extends AppCompatActivity
 {
     /** Text fields containing the user's email address and password. */
     private EditText mEmailField, mPasswordField;
-
-    /** Key for the intent extra. */
-    private static final String USER = "com.llamadroid.clem.myneighbourhood.new_user";
 
 
     @Override
@@ -120,13 +118,14 @@ public class LoginActivity extends AppCompatActivity
      */
     private void inflateForgotButton()
     {
-        Button forgotButton = (Button) findViewById(R.id.button_forgot_password);
-        forgotButton.setOnClickListener(new View.OnClickListener()
+        TextView forgotTextview = (TextView) findViewById(R.id.login_forgot_password);
+        forgotTextview.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                printErrorToast("Forgot Password"); // REMOVE
+                // TODO
+                printErrorToast("Forgot Password");
                 mPasswordField.setText("");
                 // Start ForgotPasswordActivity
             }
@@ -165,13 +164,5 @@ public class LoginActivity extends AppCompatActivity
     public static Intent newIntent(Context packageContext)
     {
         return new Intent(packageContext, LoginActivity.class);
-    }
-
-    /**
-     * To be used by other activities to retrieve user object.
-     */
-    public static User getLoggedInUser(Intent result)
-    {
-        return (User)result.getSerializableExtra(USER);
     }
 }

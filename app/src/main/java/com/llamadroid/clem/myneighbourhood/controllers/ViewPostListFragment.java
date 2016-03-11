@@ -17,12 +17,15 @@ import com.llamadroid.clem.myneighbourhood.models.PostSet;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 
+/**
+ * Class displaying the list of posts.
+ */
 public class ViewPostListFragment extends Fragment
 {
     private RecyclerView mPostRecyclerView;
-    private PostAdapter mAdapter;
 
 
     @Override
@@ -39,18 +42,18 @@ public class ViewPostListFragment extends Fragment
         return view;
     }
 
-
+    // Update list view when the user slides the screen.
     private void updateUI()
     {
         PostSet postSet = PostSet.get(getActivity());
         List<Post> posts = new ArrayList<>(postSet.getAllPosts());
 
-        mAdapter = new PostAdapter(posts);
-        mPostRecyclerView.setAdapter(mAdapter);
+        PostAdapter adapter = new PostAdapter(posts);
+        mPostRecyclerView.setAdapter(adapter);
     }
 
-    private class PostHolder extends RecyclerView.ViewHolder
-            implements View.OnClickListener
+    // Holds a view for a single post.
+    private class PostHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
         private TextView mTitleTextView;
         private TextView mAuthorTextView;
@@ -65,6 +68,8 @@ public class ViewPostListFragment extends Fragment
             super(itemView);
 
             itemView.setOnClickListener(this);
+
+            // Inflating the TextView widgets.
             mTitleTextView = (TextView) itemView.findViewById(R.id.list_item_post_title);
             mAuthorTextView = (TextView) itemView.findViewById(R.id.list_item_post_author);
             mDateTextView = (TextView) itemView.findViewById(R.id.list_item_post_date);
@@ -72,17 +77,22 @@ public class ViewPostListFragment extends Fragment
             mCategoryTextView = (TextView) itemView.findViewById(R.id.list_item_post_category);
         }
 
+        // Binds the post's data to its view
         public void bindPost(Post post)
         {
             mPost = post;
+
             mTitleTextView.setText(mPost.getTitle());
             mAuthorTextView.setText(mPost.getAuthor().getUserName());
-            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.UK);
             mDateTextView.setText(format.format(post.getDate()));
             mStatusTextView.setText(post.getCategory().printStatus());
             mStatusTextView.setTextColor(Color.parseColor(post.getCategory().getColor()));
             mCategoryTextView.setText(post.getCategory().getCategoryName());
             mCategoryTextView.setTextColor(Color.parseColor(post.getCategory().getColor()));
+            /* Either display the status of the post if it has changed (the item was sold,
+            * what was lost was found, ...) or the category of the post (question, found, event, ...)
+            */
             if(post.getCategory().getStatus())
             {
                 mStatusTextView.setVisibility(View.VISIBLE);
@@ -98,10 +108,11 @@ public class ViewPostListFragment extends Fragment
         @Override
         public void onClick(View view)
         {
-            startActivity(ViewPostActivity.newIntent(getActivity(), mPost.getId()));
+            startActivity(PostPagerActivity.newIntent(getActivity(), mPost.getId()));
         }
     }
 
+    // Creates PostHolders when needed and binds them to the corresponding Post.
     private class PostAdapter extends RecyclerView.Adapter<PostHolder>
     {
         private List<Post> mPosts;

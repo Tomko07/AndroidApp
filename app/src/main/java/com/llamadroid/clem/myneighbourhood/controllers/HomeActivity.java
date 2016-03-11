@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.llamadroid.clem.myneighbourhood.R;
+import com.llamadroid.clem.myneighbourhood.SaveSharedPreference;
+import com.llamadroid.clem.myneighbourhood.ToolbarOptions;
 import com.llamadroid.clem.myneighbourhood.models.CurrentUser;
 
 /**
@@ -18,10 +20,6 @@ import com.llamadroid.clem.myneighbourhood.models.CurrentUser;
  */
 public class HomeActivity extends AppCompatActivity
 {
-    /** Key for the intent extra. */
-    private static final String CURRENT_USER = "com.llamadroid.clem.myneighbourhood.current_user";
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -48,29 +46,8 @@ public class HomeActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-        switch(item.getItemId())
-        {
-            case R.id.menu_item_profile:
-                // Start profile activity
-                return true;
-            case R.id.menu_item_messages:
-                // Start messages activity
-                return true;
-            case R.id.menu_item_home:
-                // Already on the home screen -> do nothing.
-                return true;
-            case R.id.menu_item_posts:
-                // Start posts activity
-                return true;
-            case R.id.menu_item_settings:
-                // Start settings activity
-                return true;
-            case R.id.menu_item_request_category:
-                // Start request category activity
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+        return ToolbarOptions.getOption(item.getItemId(), this)
+                || super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -116,8 +93,7 @@ public class HomeActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                CurrentUser.logUserOut();
-                finish();
+                // TODO
             }
         });
     }
@@ -130,7 +106,7 @@ public class HomeActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-
+                // TODO
             }
         });
     }
@@ -143,7 +119,7 @@ public class HomeActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-
+                // TODO
             }
         });
     }
@@ -156,7 +132,7 @@ public class HomeActivity extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-
+                // TODO
             }
         });
     }
@@ -164,10 +140,12 @@ public class HomeActivity extends AppCompatActivity
     private void inflateOfferServiceButton()
     {
         Button offerServiceButton = (Button)findViewById(R.id.button_offer_service);
-        offerServiceButton.setOnClickListener(new View.OnClickListener() {
+        offerServiceButton.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
-
+            public void onClick(View v)
+            {
+                // TODO
             }
         });
     }
@@ -175,10 +153,12 @@ public class HomeActivity extends AppCompatActivity
     private void inflateRequestServiceButton()
     {
         Button requestServiceButton = (Button)findViewById(R.id.button_request_service);
-        requestServiceButton.setOnClickListener(new View.OnClickListener() {
+        requestServiceButton.setOnClickListener(new View.OnClickListener()
+        {
             @Override
-            public void onClick(View v) {
-
+            public void onClick(View v)
+            {
+                // TODO
             }
         });
     }
